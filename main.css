@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222;
+    font-family: "Arial", sans-serif;
+  }
+
+  .progress-bar-container {
+    width: 80%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #111;
+    border-radius: 35px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.4);
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 60px;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.4);
+  }
+
+  .filler {
+    background: linear-gradient(45deg, #003300, #00cc00, #003300);
+    height: 100%;
+    border-radius: 30px;
+    transition: width 2s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .filler::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 255, 0, 0.2) 25%, transparent 25%, transparent 50%, rgba(0, 255, 0, 0.2) 50%, rgba(0, 255, 0, 0.2) 75%, transparent 75%, transparent 100%);
+    background-size: 40px 40px;
+    animation: stripes 1s linear infinite;
+  }
+
+  .overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2) 50%, transparent 100%), url("https://www.transparenttextures.com/patterns/black-thread-light.png");
+    background-blend-mode: multiply;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .overlay::after {
+    content: "";
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    bottom: -4px;
+    left: -4px;
+    border: 4px solid rgba(139, 69, 19, 0.8);
+    pointer-events: none;
+    border-radius: 34px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9), 0 0 20px rgba(139, 69, 19, 0.6);
+    z-index: 2;
+  }
+
+  .progress-bar::after {
+    content: "PROGRESS";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 4px #000;
+    font-weight: bold;
+    z-index: 3;
+    pointer-events: none;
+    font-size: 24px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  .glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 120%;
+    background: radial-gradient(ellipse at center, rgba(0, 255, 0, 0.3) 0%, rgba(0, 255, 0, 0) 70%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 4;
+  }
+
+  .progress-bar-container:hover .glow {
+    opacity: 1;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes stripes {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 40px 0;
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.2);
+      opacity: 0.3;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.8;
+    }
+  }
